@@ -1,8 +1,11 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { Card } from "../components/Card";
 import { articles } from "../dummy";
 
 export const HomePage = () => {
+  const { push } = useHistory();
+
   return (
     <>
       {/* Header */}
@@ -15,6 +18,14 @@ export const HomePage = () => {
 
       {/* Body */}
       <div className="max-w-screen-lg mx-auto">
+        <div className="p-4">
+          <button
+            className="bg-indigo-600 text-white rounded-md px-4 py-2"
+            onClick={() => push("/articles/add")}
+          >
+            새로 작성
+          </button>
+        </div>
         <div className="grid grid-cols-3 gap-x-2 gap-y-4 m-2 mt-8">
           {articles.map((article) => (
             <Card key={article.id} article={article} />
