@@ -1,16 +1,16 @@
 import React from "react";
-import { Card } from "./components/Card";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { ArticlePage } from "./pages/ArticlePage";
+import { HomePage } from "./pages/HomePage";
 
 function App() {
   return (
-    <div>
-      <h1>Blog</h1>
-      <p>My Blog Service</p>
-      <Card title="제목 1" />
-      <Card title="제목 2" />
-      <Card title="제목 3" />
-      <Card title="제목 4" />
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/articles" component={ArticlePage} />
+        <Route path="/" component={HomePage} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
