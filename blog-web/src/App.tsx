@@ -6,10 +6,10 @@ function App() {
     <div>
       <h1>Blog</h1>
       <p>My Blog Service</p>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      <Card title="제목 1" />
+      <Card title="제목 2" />
+      <Card title="제목 3" />
+      <Card title="제목 4" />
     </div>
   );
 }

@@ -1,5 +1,10 @@
 import React from "react";
+import { FC } from "react";
 
-export function Card() {
-  return <div>블로그 포스트</div>;
+interface CardProps {
+  title: string;
 }
+
+export const Card: FC<CardProps> = ({ title }) => {
+  return <div>{title}</div>;
+};
