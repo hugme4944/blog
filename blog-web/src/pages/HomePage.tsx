@@ -1,10 +1,19 @@
+import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Card } from "../components/Card";
-import { articles } from "../dummy";
+import { Article } from "../dummy";
 
 export const HomePage = () => {
   const { push } = useHistory();
+  const [articles, setArticles] = useState<Article[]>([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/articles")
+      .then(({ data }) => setArticles(data));
+  }, []);
 
   return (
     <>
