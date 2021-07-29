@@ -1,0 +1,16 @@
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+@Entity()
+export class Article {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({ default: '' })
+  title: string;
+
+  @Column({ default: '' })
+  content: string;
+
+  @Column({ default: '' })
+  thumbnail: string;
+}
