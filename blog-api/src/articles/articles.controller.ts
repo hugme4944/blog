@@ -30,7 +30,7 @@ export class ArticlesController {
   }
 
   @Delete(':id')
-  deleteArticle(@Param('id', ParseIntPipe) id: number) {
-    this.articlesService.deleteArticle(id);
+  async deleteArticle(@Param('id', ParseIntPipe) id: number) {
+    await this.articlesService.deleteArticle(id);
   }
 }

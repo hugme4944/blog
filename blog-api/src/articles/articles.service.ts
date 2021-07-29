@@ -1,24 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { Article, articles } from './dummy';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Article } from './article.entity';
 
 @Injectable()
 export class ArticlesService {
+  constructor(
+    @InjectRepository(Article)
+    private articlesRepository: Repository<Article>,
+  ) {}
+
   getArticles() {
-    return articles;
+    return this.articlesRepository.find();
   }
 
   getArticle(id: number) {
-    return articles.find((article) => article.id === id);
+    return this.articlesRepository.findOne(id);
   }
 
   addArticle(article: Article) {
-    const id = articles.sort((a, b) => b.id - a.id)[0].id + 1;
-    const thumbnail = `https://source.unsplash.com/random/400x400?sig=${id}`;
-    articles.push({ ...article, id, thumbnail });
+    return this.articlesRepository.save({
+      ...article,
+      thumbnail: `https://source.unsplash.com/random/400x400?sig=${new Date().getMilliseconds()}`,
+    });
   }
 
-  deleteArticle(id: number) {
-    const index = articles.findIndex((article) => article.id === id);
-    articles.splice(index, 1);
+  async deleteArticle(id: number) {
+    await this.articlesRepository.delete(id);
   }
 }
