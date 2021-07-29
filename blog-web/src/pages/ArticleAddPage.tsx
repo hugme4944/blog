@@ -1,7 +1,7 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { articles } from "../dummy";
 
 export const ArticleAddPage = () => {
   const { goBack } = useHistory();
@@ -26,13 +26,10 @@ export const ArticleAddPage = () => {
         />
         <button
           className="bg-indigo-600 text-white rounded-md px-4 py-2"
-          onClick={() => {
-            const id = articles.length + 2;
-            articles.push({
-              id,
+          onClick={async () => {
+            await axios.post("http://localhost:8000/articles", {
               title,
               content,
-              thumbnail: `https://source.unsplash.com/random/400x400?sig=${id}`,
             });
             goBack();
           }}
