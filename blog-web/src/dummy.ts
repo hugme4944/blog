@@ -3,4 +3,6 @@ export interface Article {
   title: string;
   content: string;
   thumbnail: string;
+  createdAt: string;
+  updatedAt: string;
 }
