@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Article } from "../dummy";
+import { recentState } from "../plugins/ridge";
 
 export const ArticlePage = () => {
   const { goBack } = useHistory();
@@ -12,6 +13,10 @@ export const ArticlePage = () => {
       .get(`http://localhost:8000/articles/${id}`)
       .then(({ data }) => setArticle(data));
   }, [id]);
+  useEffect(() => {
+    if (!article) return;
+    recentState.set(article);
+  }, [article]);
 
   if (!article) return <>404, Not Found</>;
   return (
